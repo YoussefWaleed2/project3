@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<div class="container d-flex">
+  <a class="btn btn-primary" href="{% url 'createtodo' %}">Add Todo</a>
+  <
+</div>
+
+    <div class="container bg-light" style="height: 100vh; border-radius: 3px; margin-top: 2%; color: black; display:flex ; justify-content:space-between ; box-sizing: border-box;">
+      
+      {% for todo in todos  %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+             <h2> {{todo.title}} </h2>  || <p>{{ todo.dateCreated}}</p>
+             <a class="btn btn-primary" href="{% url 'createitem' todo.id %}">Add Item</a>
+            </div>
+            <ul class="list-group list-group-flush">
+              {% for item in todo.todoitem_set.all %}
+                
+              <a href="{% url 'detailed' item.id %}">  <li class="list-group-item"> {{item.title}} </li></a> <span><a class="btn btn-info" href="{% url 'completed' item.id %}" > Completed </a>
+              <!-- <li class="list-group-item">  </li> -->
+              
+              {% endfor %}
+            </ul>
+          </div>
+          {% endfor %}
+    </div>
+{% endblock content %}
+
+
+
+
+
